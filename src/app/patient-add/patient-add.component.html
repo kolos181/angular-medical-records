@@ -1,0 +1,30 @@
+<div>
+  <label>patient name:
+    <input #patientName/>
+  </label>
+  <label>date of birth:
+    <input type="date" #patientBirthDate/>
+  </label>
+  <label>sex:
+    <input #patientSex/>
+  </label>
+  <label>country:
+    <input #patientCountry/>
+  </label>
+  <label>state:
+    <input #patientState/>
+  </label>
+  <label>address:
+    <input #patientAddress/>
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="addPatient({id: patientName.value, name: patientName.value, date: patientBirthDate.value, sex: patientSex.value, country: patientCountry.value, state: patientState.value, address: patientAddress.value});
+patientName.value='';
+patientBirthDate.value='';
+patientSex.value='';
+patientCountry.value='';
+patientState.value='';
+patientAddress.value=''">
+    add
+  </button>
+</div>

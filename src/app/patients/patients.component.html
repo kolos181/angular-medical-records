@@ -1,0 +1,15 @@
+<li *ngFor="let patient of patients | async">
+  <a routerLink="../../api/getPatient/{{patient.id}}">
+    <ul>{{patient.id}}</ul>
+    <ul>{{patient.name}}</ul>
+    <ul>{{patient.sex}}</ul>
+    <ul>{{patient.state}}</ul>
+    <!--<ul>{{birthDate}}</ul>-->
+    <ul>{{patient.createdAt}}</ul>
+    <ul>{{patient.updatedAt}}</ul>
+  </a>
+  <button class="delete" title="delete patient"
+          (click)="deletePatient(patient)">x
+  </button>
+
+</li>
