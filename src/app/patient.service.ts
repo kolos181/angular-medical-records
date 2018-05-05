@@ -9,10 +9,6 @@ import {Subscription} from 'rxjs/Subscription';
 export class PatientService {
 
   private readonly URL = '/api/patients';
-  private readonly getOneUrl = '/api/getPatient';
-  private readonly addOneUrl = '/api/addPatient';
-  private readonly deleteOneUrl = '/api/deletePatient';
-  // private readonly updateOneUrl = '/api/';
 
   constructor(private http: HttpClient) {
   }
