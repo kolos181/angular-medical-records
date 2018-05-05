@@ -4,9 +4,9 @@
     <ul>{{patient.name}}</ul>
     <ul>{{patient.sex}}</ul>
     <ul>{{patient.state}}</ul>
-    <!--<ul>{{birthDate}}</ul>-->
-    <ul>{{patient.createdAt}}</ul>
-    <ul>{{patient.updatedAt}}</ul>
+    <ul>birthDate: {{patient.date | date:'yyyy-MM-dd'}}</ul>
+    <ul>record created at: {{patient.createdAt | date:'yyyy-MM-dd'}}</ul>
+    <ul>record updated at: {{patient.updatedAt | date:'yyyy-MM-dd'}}</ul>
   </a>
   <button class="delete" title="delete patient"
           (click)="deletePatient(patient)">x

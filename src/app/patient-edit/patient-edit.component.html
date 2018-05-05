@@ -1,3 +1,39 @@
-<p>
-  patient-edit works!
-</p>
+<!--put here some action that fills fields with information that is already there-->
+<div>
+  <label>patient name:
+    <input #patientName value="{{patient.name}}"/>
+  </label>
+  <label>date of birth:
+    <input type="date" #patientBirthDate value="{{patient.date | date:'yyyy-MM-dd'}}"/>
+  </label>
+  <label>sex:
+    <input #patientSex value="{{patient.sex}}"/>
+  </label>
+  <label>country:
+    <input #patientCountry value="{{patient.country}}"/>
+  </label>
+  <label>state:
+    <input #patientState value="{{patient.state}}"/>
+  </label>
+  <label>address:
+    <input #patientAddress  value="{{patient.address}}"/>
+  </label>
+  <!-- (click) passes input value to editPatient() and then clears the input -->
+  <button (click)="editPatient({
+  name: patientName.value,
+   date: patientBirthDate.value,
+    sex: patientSex.value,
+     country: patientCountry.value,
+      state: patientState.value,
+       address: patientAddress.value
+       });
+
+patientName.value='';
+patientBirthDate.value='';
+patientSex.value='';
+patientCountry.value='';
+patientState.value='';
+patientAddress.value=''">
+    edit
+  </button>
+</div>

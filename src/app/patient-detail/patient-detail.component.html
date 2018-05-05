@@ -2,7 +2,7 @@
 <h1>{{patient.name}}</h1>
 <h1>{{patient.sex}}</h1>
 <h1>{{patient.state}}</h1>
-<h1>{{patient.date}}</h1>
+<h1>{{patient.date | date}}</h1>
 <button class="delete" title="delete patient"
         (click)="deletePatient(patient)">x
 </button>

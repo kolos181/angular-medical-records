@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
+
 import {Patient} from '../Patient';
 import {PatientService} from '../patient.service';
 
@@ -10,16 +12,18 @@ import {PatientService} from '../patient.service';
 
 export class PatientAddComponent implements OnInit {
 
-  constructor(private patientsService: PatientService) {
+  constructor(private patientService: PatientService, private location: Location) {
   }
 
   ngOnInit() {
   }
 
   addPatient(patient: Patient): void {
-    // patient.date = new Date(patient.date).getTime();
-    console.log(new Date(patient.date).getTime());
-    this.patientsService.addPatient(patient);
+    this.patientService.addPatient(patient);
+    this.goBack();
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

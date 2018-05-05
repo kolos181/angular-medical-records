@@ -24,10 +24,10 @@ export class PatientDetailComponent implements OnInit {
   }
 
   getPatient(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.patientService.getPatient(id)
-      .subscribe(patient => this.patient = patient);
-  }
+  const id = +this.route.snapshot.paramMap.get('id');
+  this.patientService.getPatient(id)
+    .subscribe(patient => this.patient = patient);
+}
 
   deletePatient(patient: Patient): void {
     this.patientService.delete(patient).subscribe();

@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import {PatientService} from '../patient.service';
+import {Patient} from '../Patient';
 
 @Component({
   selector: 'app-patient-edit',
   templateUrl: './patient-edit.component.html',
   styleUrls: ['./patient-edit.component.css']
 })
+
 export class PatientEditComponent implements OnInit {
 
-  constructor() { }
+  @Input() patient: Patient;
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute,
+    private patientService: PatientService,
+    private location: Location) {
   }
 
+  ngOnInit() {
+    this.getPatient();
+  }
+
+  editPatient(patient: Patient): void {
+    console.log(patient);
+    // adding id from injected patient, since we don't specify id in edit form
+    patient.id = this.patient.id;
+    this.patientService.updatePatient(patient);
+    this.goBack();
+  }
+
+  private getPatient() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.patientService.getPatient(id)
+      .subscribe(patient => this.patient = patient);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

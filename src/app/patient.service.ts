@@ -1,6 +1,6 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Patient} from './Patient';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
@@ -25,11 +25,11 @@ export class PatientService {
     return this.http.post<Patient>(this.URL, patient).subscribe();
   }
 
-  public delete(patient: Patient): Observable<Patient> {
-    return this.http.delete<Patient>(`${this.URL}/${patient.id}`);
+  public updatePatient(patient: Patient): Subscription {
+    return this.http.put<Patient>(`${this.URL}/${patient.id}`, patient).subscribe();
   }
 
-  public updatePatient(patient: Patient): Observable<any> {
-    return this.http.put(this.URL, patient);
+  public delete(patient: Patient): Observable<Patient> {
+    return this.http.delete<Patient>(`${this.URL}/${patient.id}`);
   }
 }
