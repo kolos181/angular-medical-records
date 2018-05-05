@@ -7,12 +7,10 @@ import {PatientEditComponent} from './patient-edit/patient-edit.component';
 import {PatientAddComponent} from './patient-add/patient-add.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/api/patients', pathMatch: 'full' },
   { path: 'api/patients', component: PatientsComponent },
   { path: 'api/getPatient/:id', component: PatientDetailComponent},
   {path: 'api/editPatient/:id', component: PatientEditComponent},
   {path: 'api/createPatient', component: PatientAddComponent},
-  {path: 'api/deletePatient/:id', component: PatientAddComponent}
 ];
 
 @NgModule({
