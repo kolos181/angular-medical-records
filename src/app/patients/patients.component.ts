@@ -12,7 +12,7 @@ import {Observable} from 'rxjs/Observable';
 export class PatientsComponent implements OnInit {
 
   months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  patients: Observable<Patient[]>;
+  patients: Patient[];
   birthDate: string;
 
   constructor(private patientService: PatientService) {
@@ -21,10 +21,11 @@ export class PatientsComponent implements OnInit {
   }
 
   getPatients(): void {
-    this.patients = this.patientService.list();
+    this.patientService.list().subscribe(patients => this.patients = patients);
   }
 
   deletePatient(patient: Patient): void {
+    this.patients = this.patients.filter(p => p !== patient);
     this.patientService.delete(patient).subscribe();
   }
 

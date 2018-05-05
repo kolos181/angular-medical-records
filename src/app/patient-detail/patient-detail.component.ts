@@ -32,8 +32,12 @@ export class PatientDetailComponent implements OnInit {
   deletePatient(patient: Patient): void {
     this.patientService.delete(patient).subscribe();
 }
+  editPatient(patient: Patient): void {
+    this.patientService.updatePatient(this.patient).subscribe(() => this.goBack());
+  }
 
   goBack(): void {
     this.location.back();
   }
+
 }

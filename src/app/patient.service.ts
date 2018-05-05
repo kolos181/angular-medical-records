@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs/Subscription';
 @Injectable()
 export class PatientService {
 
-  private readonly listUrl = '/api/patients';
+  private readonly URL = '/api/patients';
   private readonly getOneUrl = '/api/getPatient';
   private readonly addOneUrl = '/api/addPatient';
   private readonly deleteOneUrl = '/api/deletePatient';
@@ -18,19 +18,22 @@ export class PatientService {
   }
 
   public list(): Observable<Patient[]> {
-  return this.http.get<Array<Patient>>(this.listUrl);
-}
+    return this.http.get<Array<Patient>>(this.URL).pipe();
+  }
 
   public getPatient(id: number): Observable<Patient> {
-    return this.http.get<Patient>(`${this.getOneUrl}/${id}`);
+    return this.http.get<Patient>(`${this.URL}/${id}`);
   }
 
   public addPatient(patient: Patient): Subscription {
-  return this.http.post<Patient>(this.addOneUrl, patient).subscribe();
-}
-
-  public delete(patient: Patient): Observable<Patient> {
-    return this.http.delete<Patient>(`${this.deleteOneUrl}/${patient.id}`);
+    return this.http.post<Patient>(this.URL, patient).subscribe();
   }
 
+  public delete(patient: Patient): Observable<Patient> {
+    return this.http.delete<Patient>(`${this.URL}/${patient.id}`);
+  }
+
+  public updatePatient(patient: Patient): Observable<any> {
+    return this.http.put(this.URL, patient);
+  }
 }

@@ -1,4 +1,4 @@
-<li *ngFor="let patient of patients | async">
+<li *ngFor="let patient of patients">
   <a routerLink="../../api/getPatient/{{patient.id}}">
     <ul>{{patient.id}}</ul>
     <ul>{{patient.name}}</ul>

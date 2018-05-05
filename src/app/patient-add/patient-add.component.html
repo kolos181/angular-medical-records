@@ -18,7 +18,7 @@
     <input #patientAddress/>
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="addPatient({id: patientName.value, name: patientName.value, date: patientBirthDate.value, sex: patientSex.value, country: patientCountry.value, state: patientState.value, address: patientAddress.value});
+  <button (click)="addPatient({name: patientName.value, date: patientBirthDate.value, sex: patientSex.value, country: patientCountry.value, state: patientState.value, address: patientAddress.value});
 patientName.value='';
 patientBirthDate.value='';
 patientSex.value='';
