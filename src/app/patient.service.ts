@@ -14,7 +14,7 @@ export class PatientService {
   }
 
   public list(): Observable<Patient[]> {
-    return this.http.get<Array<Patient>>(this.URL).pipe();
+    return this.http.get<Array<Patient>>(this.URL);
   }
 
   public getPatient(id: number): Observable<Patient> {

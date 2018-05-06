@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Location } from '@angular/common';
+import {Router} from '@angular/router';
 
 import {Patient} from '../Patient';
 import {PatientService} from '../patient.service';
@@ -12,18 +12,27 @@ import {PatientService} from '../patient.service';
 
 export class PatientAddComponent implements OnInit {
 
-  constructor(private patientService: PatientService, private location: Location) {
+  patients: Patient[];
+
+  constructor(private patientService: PatientService, private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  addPatient(patient: Patient): void {
-    this.patientService.addPatient(patient);
-    this.goBack();
+  addPatient(patient: Patient) {
+    this.patientService.addPatient(patient).subscribe(
+      this.getPatients(),
+      this.router.navigate(['api/patients'])
+    );
   }
 
-  goBack(): void {
-    this.location.back();
+  getPatients(): void {
+    this.patientService.list().subscribe(
+      patients => {
+        this.patients = patients;
+      },
+      err => console.error(err),
+      () => console.log('done loading patients'));
   }
 }

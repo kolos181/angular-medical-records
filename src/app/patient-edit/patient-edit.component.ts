@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {PatientService} from '../patient.service';
 import {Patient} from '../Patient';
@@ -18,7 +17,7 @@ export class PatientEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private patientService: PatientService,
-    private location: Location) {
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -30,7 +29,7 @@ export class PatientEditComponent implements OnInit {
     // adding id from injected patient, since we don't specify id in edit form
     patient.id = this.patient.id;
     this.patientService.updatePatient(patient);
-    this.goBack();
+    this.router.navigate(["api/getPatient", patient.id]);
   }
 
   private getPatient() {
@@ -39,7 +38,4 @@ export class PatientEditComponent implements OnInit {
       .subscribe(patient => this.patient = patient);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
 }

@@ -11,18 +11,20 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class PatientsComponent implements OnInit {
 
-  months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   patients: Patient[];
-  birthDate: string;
 
   constructor(private patientService: PatientService) {
-    // this.date = this.patient.date.getDate() + ' ' + this.months[this.patient.date.getMonth()] + ', ' +
-    //   '' + this.patient.date.getFullYear();
   }
 
   getPatients(): void {
-    this.patientService.list().subscribe(patients => this.patients = patients);
+    this.patientService.list().subscribe(
+      patients => {
+        this.patients = patients;
+      },
+      err => console.error(err),
+      () => console.log('done loading patients'));
   }
+
 
   deletePatient(patient: Patient): void {
     this.patients = this.patients.filter(p => p !== patient);
