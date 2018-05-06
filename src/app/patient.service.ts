@@ -4,11 +4,13 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
+import {Comments} from "./Comments";
 
 @Injectable()
 export class PatientService {
 
   private readonly URL = '/api/patients';
+  private readonly COMMENTS = '/api/comments';
 
   constructor(private http: HttpClient) {
   }
@@ -31,5 +33,9 @@ export class PatientService {
 
   public delete(patient: Patient): Observable<Patient> {
     return this.http.delete<Patient>(`${this.URL}/${patient.id}`);
+  }
+
+  getComments(id: number) {
+    return this.http.get<Array<Comments>>(`${this.COMMENTS}/${id}`);
   }
 }

@@ -4,6 +4,7 @@ import {Location} from '@angular/common';
 
 import {PatientService} from '../patient.service';
 import {Patient} from '../Patient';
+import {Comments} from "../Comments";
 
 
 @Component({
@@ -13,6 +14,7 @@ import {Patient} from '../Patient';
 })
 export class PatientDetailComponent implements OnInit {
   @Input() patient: Patient;
+  @Input() comments: Comments[];
 
   constructor(private patientService: PatientService,
               private route: ActivatedRoute,
@@ -27,6 +29,8 @@ export class PatientDetailComponent implements OnInit {
   const id = +this.route.snapshot.paramMap.get('id');
   this.patientService.getPatient(id)
     .subscribe(patient => this.patient = patient);
+  this.patientService.getComments(id)
+    .subscribe(comments => this.comments = comments);
 }
 
   deletePatient(patient: Patient): void {

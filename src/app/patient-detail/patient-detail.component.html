@@ -6,6 +6,11 @@
 <h1>{{patient.address}}</h1>
 <h1>{{patient.date | date}}</h1>
 
+<li *ngFor="let comment of comments">
+  <ul>{{comment.comment}}</ul>
+  <ul>{{comment.date}}</ul>
+</li>
+
 <button class="delete" title="delete patient"
         (click)="deletePatient(patient)">x
 </button>
