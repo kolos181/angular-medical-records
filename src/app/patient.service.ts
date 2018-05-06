@@ -38,4 +38,8 @@ export class PatientService {
   getComments(id: number) {
     return this.http.get<Array<Comments>>(`${this.COMMENTS}/${id}`);
   }
+
+  addComment(comment: Comments): Subscription {
+    return this.http.post<Comments>(this.COMMENTS, comment).subscribe();
+  }
 }

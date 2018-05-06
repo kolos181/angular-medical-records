@@ -10,6 +10,13 @@
   <ul>{{comment.comment}}</ul>
   <ul>{{comment.date}}</ul>
 </li>
+<label>Add comment
+  <input #comment/>
+</label>
+<button title="add comment"
+        (click)="addComment(comment.value)">add comment
+</button>
+
 
 <button class="delete" title="delete patient"
         (click)="deletePatient(patient)">x

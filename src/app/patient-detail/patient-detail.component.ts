@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 
 import {PatientService} from '../patient.service';
 import {Patient} from '../Patient';
-import {Comments} from "../Comments";
+import {Comments} from '../Comments';
 
 
 @Component({
@@ -26,19 +26,27 @@ export class PatientDetailComponent implements OnInit {
   }
 
   getPatient(): void {
-  const id = +this.route.snapshot.paramMap.get('id');
-  this.patientService.getPatient(id)
-    .subscribe(patient => this.patient = patient);
-  this.patientService.getComments(id)
-    .subscribe(comments => this.comments = comments);
-}
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.patientService.getPatient(id)
+      .subscribe(patient => this.patient = patient);
+    this.patientService.getComments(id)
+      .subscribe(comments => this.comments = comments);
+  }
 
   deletePatient(patient: Patient): void {
     this.patientService.delete(patient).subscribe();
-}
+  }
+
   editPatient(patient: Patient): void {
     this.patientService.updatePatient(patient);
     this.goBack();
+  }
+
+  addComment(comment: string): void {
+    const localComment = new Comments();
+    localComment.patient = this.patient;
+    localComment.comment = comment;
+    this.patientService.addComment(localComment);
   }
 
   goBack(): void {
