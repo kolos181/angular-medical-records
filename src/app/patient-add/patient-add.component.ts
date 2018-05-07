@@ -21,10 +21,9 @@ export class PatientAddComponent implements OnInit {
   }
 
   addPatient(patient: Patient) {
-    this.patientService.addPatient(patient).subscribe(
-      this.getPatients(),
-      this.router.navigate(['api/patients'])
-    );
+    this.patientService.addPatient(patient).subscribe();
+    this.getPatients();
+    this.router.navigate(['api/patients']);
   }
 
   getPatients(): void {

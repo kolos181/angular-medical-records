@@ -28,7 +28,7 @@ export class PatientEditComponent implements OnInit {
     console.log(patient);
     // adding id from injected patient, since we don't specify id in edit form
     patient.id = this.patient.id;
-    this.patientService.updatePatient(patient);
+    this.patientService.updatePatient(patient).subscribe();
     this.router.navigate(["api/getPatient", patient.id]);
   }
 

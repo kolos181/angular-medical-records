@@ -1,11 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {PatientService} from '../patient.service';
 import {Patient} from '../Patient';
 import {Comments} from '../Comments';
-
 
 @Component({
   selector: 'app-patient-detail',
@@ -18,7 +17,8 @@ export class PatientDetailComponent implements OnInit {
 
   constructor(private patientService: PatientService,
               private route: ActivatedRoute,
-              private location: Location) {
+              private location: Location,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class PatientDetailComponent implements OnInit {
   }
 
   editPatient(patient: Patient): void {
-    this.patientService.updatePatient(patient);
+    this.patientService.updatePatient(patient).subscribe();
     this.goBack();
   }
 
@@ -46,7 +46,9 @@ export class PatientDetailComponent implements OnInit {
     const localComment = new Comments();
     localComment.patient = this.patient;
     localComment.comment = comment;
-    this.patientService.addComment(localComment);
+    this.patientService.addComment(localComment).subscribe();
+    this.getPatient();
+    this.router.navigate(['api/getPatient', this.patient.id]);
   }
 
   goBack(): void {

@@ -23,23 +23,23 @@ export class PatientService {
     return this.http.get<Patient>(`${this.URL}/${id}`);
   }
 
-  public addPatient(patient: Patient): Subscription {
-    return this.http.post<Patient>(this.URL, patient).subscribe();
+  public addPatient(patient: Patient): Observable<Patient> {
+    return this.http.post<Patient>(this.URL, patient);
   }
 
-  public updatePatient(patient: Patient): Subscription {
-    return this.http.put<Patient>(`${this.URL}/${patient.id}`, patient).subscribe();
+  public updatePatient(patient: Patient): Observable<Patient> {
+    return this.http.put<Patient>(`${this.URL}/${patient.id}`, patient);
   }
 
   public delete(patient: Patient): Observable<Patient> {
     return this.http.delete<Patient>(`${this.URL}/${patient.id}`);
   }
 
-  getComments(id: number) {
+  getComments(id: number): Observable<Comments[]> {
     return this.http.get<Array<Comments>>(`${this.COMMENTS}/${id}`);
   }
 
-  addComment(comment: Comments): Subscription {
-    return this.http.post<Comments>(this.COMMENTS, comment).subscribe();
+  addComment(comment: Comments): Observable<Comments> {
+    return this.http.post<Comments>(this.COMMENTS, comment);
   }
 }
