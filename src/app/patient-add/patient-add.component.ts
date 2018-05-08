@@ -12,8 +12,6 @@ import {PatientService} from '../patient.service';
 
 export class PatientAddComponent implements OnInit {
 
-  patients: Patient[];
-
   constructor(private patientService: PatientService, private router: Router) {
   }
 
@@ -21,17 +19,7 @@ export class PatientAddComponent implements OnInit {
   }
 
   addPatient(patient: Patient) {
-    this.patientService.addPatient(patient).subscribe();
-    this.getPatients();
-    this.router.navigate(['api/patients']);
-  }
-
-  getPatients(): void {
-    this.patientService.list().subscribe(
-      patients => {
-        this.patients = patients;
-      },
-      err => console.error(err),
-      () => console.log('done loading patients'));
+    this.patientService.addPatient(patient).subscribe(
+      () => this.router.navigate(['api/patients']));
   }
 }
